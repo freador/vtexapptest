@@ -61,7 +61,7 @@ class SkuContainer extends Component {
     const { items } = this.props
     let buyButton = null
     if (this.state.selectedSku !== null) {
-      buyButton = <button onClick={this.addToCart}>Comprar</button>
+      buyButton = <button className="f6 link dim ph3 pv2 mb2 dib white bg-dark-blue" onClick={this.addToCart}>Comprar</button>
     }
     return (
       <div>
