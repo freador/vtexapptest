@@ -4,6 +4,7 @@ import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 import Shelf from './components/Shelf'
 import ErrorBoundary from './components/ErrorBoundary'
+import Cart from './components/Cart'
 
 class ShelfExample extends Component {
 
@@ -16,9 +17,9 @@ class ShelfExample extends Component {
     console.log(this.props.data.orderForm.orderFormId)
     console.log(this.props.addItem)
     this.props.addItem({variables: {orderFormId: this.props.data.orderForm.orderFormId, items: [{id: id, quantity: 1, seller: 1}]}}).then((data) => {
-      alert("Adicionado ao carrinho")
+      console.log("Adicionado ao carrinho", data);
     }, (data) => {
-      alert("Adicionado ao carrinho")
+      console.log("Adicionado ao carrinho", data)
     })
     console.log("shelf example:", id)
   }
@@ -33,6 +34,7 @@ class ShelfExample extends Component {
           salesChannel={1}
           orderBy="OrderByTopSaleDESC"
           onSelectedSku={this.onSelectedSku} />
+        <Cart />
       </ErrorBoundary>
     )
   }
@@ -94,3 +96,5 @@ export default compose(
   graphql(query, options),
   graphql(mutation, {name: 'addItem'})
 )(ShelfExample)
+
+// export default ShelfExample
